@@ -15,14 +15,14 @@
         android:text="Accel-Flick" />
 
     <Button
-        android:id="@+id/btn_tilt"
+        android:id="@+id/btn_orient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tilt left right" />
+        android:text="Orientation-Left Right" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_swipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Swipe..." />
 </LinearLayout>

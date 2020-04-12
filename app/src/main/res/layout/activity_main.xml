@@ -31,14 +31,13 @@
         android:id="@+id/btn_sensor_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Acceleration and orientation" />
+        android:text="@string/btn_acceleration_and_orientation" />
 
-    <TextView
-        android:id="@+id/txt_available_sensors"
+    <Button
+        android:id="@+id/btn_available_sensors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="List of available sensors"
-        android:textSize="30sp" />
+        android:text="@string/btn_list_available_sensors" />
 
     <ListView
         android:id="@+id/list_available_sensors"

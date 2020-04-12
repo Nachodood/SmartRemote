@@ -9,15 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SensorTest"></activity>
+        <activity android:name=".AccelFlickActivity"></activity>
+        <activity
+            android:name=".AvailableSensors"
+            android:label="Available sensors"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SensorTest"
+            android:label="Sensor test" />
         <activity
             android:name=".PerformableGesturesActivity"
             android:label="Performable gestures"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ConnectActivity"
             android:label="Connect to a device"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -11,7 +11,10 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class SensorTest extends Activity implements SensorEventListener {
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class SensorTest extends Activity implements SensorEventListener  {
     SensorManager sensorManager = null;
     //for accelerometer values
     TextView outputX;
@@ -27,6 +30,7 @@ public class SensorTest extends Activity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         setContentView(R.layout.activity_sensor_test);
+
 //just some textviews, for data output
         outputX =  findViewById(R.id.TextView01);
         outputY =  findViewById(R.id.TextView02);

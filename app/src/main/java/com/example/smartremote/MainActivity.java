@@ -19,9 +19,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button m_btnConnect, m_btnViewGestures, m_btnSensorTest;
-
-    TextView m_txtViewAvailableSensors;
+    Button  m_btnConnect,
+            m_btnViewGestures,
+            m_btnSensorTest,
+            m_btnAvailableSensors;
 
     ListView m_listAvailableSensors;
 
@@ -39,24 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        m_deviceSensorsList = sensorManager.getSensorList(Sensor.TYPE_ALL);
-
-        m_StringSensorsList = new ArrayList<>();
-
-        int i=0;
-        while(i<=m_deviceSensorsList.size()-1)
-        {
-            m_currentSensor = m_deviceSensorsList.get(i);
-            m_currentSensorString = m_currentSensor.getName();
-            m_StringSensorsList.add(m_currentSensorString);
-            i++;
-        }
-
-        m_customListAdapter = new ScrollListAdapter(this, m_StringSensorsList);
-
-        m_listAvailableSensors = findViewById(R.id.list_available_sensors);
-        m_listAvailableSensors.setAdapter(m_customListAdapter);
+       //stuff was here
 
         m_btnConnect = findViewById(R.id.btn_connect);
         m_btnConnect.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +69,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent sensorTestIntent = new Intent(MainActivity.this,
                         SensorTest.class);
                 startActivity(sensorTestIntent);
+            }
+        });
+
+        m_btnAvailableSensors = findViewById(R.id.btn_available_sensors);
+        m_btnAvailableSensors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent availableSensorsIntent = new Intent(MainActivity.this,
+                        AvailableSensors.class);
+                startActivity(availableSensorsIntent);
             }
         });
 

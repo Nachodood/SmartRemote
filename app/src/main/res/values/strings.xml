@@ -3,4 +3,6 @@
     <string name="btn_connect">Connect</string>
     <string name="txt_welcome">Choose what you would like to do from the options below</string>
     <string name="btn_view_gestures">View performable gestures</string>
+    <string name="btn_list_available_sensors">List available sensors</string>
+    <string name="btn_acceleration_and_orientation">View acceleration and orientation</string>
 </resources>
