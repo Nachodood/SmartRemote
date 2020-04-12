@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AccelFlickActivity"></activity>
+        <activity
+          android:name=".AccelFlickActivity"
+          android:label="AccelFlickActivity"
+          android:parentActivityName=".PerformableGesturesActivity"/>
         <activity
             android:name=".AvailableSensors"
             android:label="Available sensors"

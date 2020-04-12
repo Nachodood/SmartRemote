@@ -29,7 +29,7 @@ public class PerformableGesturesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent accelerationFlickIntent = new Intent(PerformableGesturesActivity.this,
-                        PerformableGesturesActivity.class);
+                        AccelFlickActivity.class);
                 startActivity(accelerationFlickIntent);
             }
         });
