@@ -27,4 +27,17 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_view_gestures" />
 
+    <TextView
+        android:id="@+id/txt_available_sensors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List of available sensors"
+        android:textSize="30sp" />
+
+    <ListView
+        android:id="@+id/list_available_sensors"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarSize="15dp" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>
