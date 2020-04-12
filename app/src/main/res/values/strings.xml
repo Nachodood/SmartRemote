@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SmartRemote</string>
     <string name="btn_connect">Connect</string>
-    <string name="txt_welcome">Choose from the options below what you would like to do</string>
+    <string name="txt_welcome">Choose what you would like to do from the options below</string>
     <string name="btn_view_gestures">View performable gestures</string>
 </resources>

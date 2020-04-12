@@ -27,6 +27,12 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_view_gestures" />
 
+    <Button
+        android:id="@+id/btn_sensor_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acceleration and orientation" />
+
     <TextView
         android:id="@+id/txt_available_sensors"
         android:layout_width="wrap_content"

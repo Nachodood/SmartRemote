@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button m_btnConnect, m_btnViewGestures;
+    Button m_btnConnect, m_btnViewGestures, m_btnSensorTest;
 
     TextView m_txtViewAvailableSensors;
 
@@ -78,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        m_btnSensorTest = findViewById(R.id.btn_sensor_test);
+        m_btnSensorTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sensorTestIntent = new Intent(MainActivity.this,
+                        SensorTest.class);
+                startActivity(sensorTestIntent);
+            }
+        });
 
 
     }
