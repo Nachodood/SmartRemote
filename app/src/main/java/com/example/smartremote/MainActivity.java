@@ -39,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         m_deviceSensorsList = sensorManager.getSensorList(Sensor.TYPE_ALL);
 
         m_StringSensorsList = new ArrayList<>();
 
         int i=0;
-        while(i<=m_deviceSensorsList.size())
+        while(i<=m_deviceSensorsList.size()-1)
         {
             m_currentSensor = m_deviceSensorsList.get(i);
             m_currentSensorString = m_currentSensor.getName();
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
 
     }
 }
