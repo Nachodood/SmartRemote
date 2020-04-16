@@ -22,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     Button  m_btnConnect,
             m_btnViewGestures,
             m_btnSensorTest,
-            m_btnAvailableSensors;
+            m_btnAvailableSensors,
+            m_btnCalibrate;
 
     ListView m_listAvailableSensors;
 
@@ -49,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent connectActivityIntent = new Intent(MainActivity.this,
                         ConnectActivity.class);
                 startActivity(connectActivityIntent);
+            }
+        });
+
+        m_btnCalibrate = findViewById(R.id.btn_calibrate);
+        m_btnCalibrate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent calibrateActivityIntent = new Intent(MainActivity.this,
+                        CalibrateActivity.class);
+                startActivity(calibrateActivityIntent);
             }
         });
 
