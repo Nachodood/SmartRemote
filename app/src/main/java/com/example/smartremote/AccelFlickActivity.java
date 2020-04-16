@@ -16,9 +16,11 @@ import android.widget.TextView;
         private Sensor mSensorAccel;
         private long lastUpdate = 0;
         float highestZ = 0;
+        float lowestZ = 0;
 
         TextView mtxtView_Accel,
-                mtxt_highestZ;
+                mtxt_highestZ,
+                mtxt_lowestZ;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ import android.widget.TextView;
 
             mtxtView_Accel = findViewById(R.id.txt_accel);
             mtxt_highestZ = findViewById(R.id.txt_highest_Z);
+            mtxt_lowestZ = findViewById(R.id.txt_lowest_z);
 
             msensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
             //linear acceleration = acceleration - acceleration due to gravity
@@ -51,6 +54,12 @@ import android.widget.TextView;
             if(z>highestZ){
                 highestZ = z;
             }
+
+            if(z<lowestZ){
+                lowestZ = z;
+            }
+
+            mtxt_lowestZ.setText("Lowest z: " + lowestZ);
 
             mtxt_highestZ.setText("Highest z: " + highestZ);
             mtxtView_Accel.setText("x: " + (int) x + " y: " + (int) y + " z: " + (int) z);
