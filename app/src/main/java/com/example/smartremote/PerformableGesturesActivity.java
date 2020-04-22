@@ -35,6 +35,14 @@ public class PerformableGesturesActivity extends AppCompatActivity {
         });
 
         m_btnOrientationLeftRight = findViewById(R.id.btn_orient);
+        m_btnOrientationLeftRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent RotateLeftRightIntent = new Intent(PerformableGesturesActivity.this,
+                        RotateActivity.class);
+                startActivity(RotateLeftRightIntent);
+            }
+        });
 
         m_btnSwipe = findViewById(R.id.btn_swipe);
 

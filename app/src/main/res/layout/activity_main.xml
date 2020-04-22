@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lin_layout_parent"
@@ -15,11 +15,28 @@
         android:text="@string/txt_welcome"
         android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/btn_connect"
+    <LinearLayout
+        android:id="@+id/linlay_connect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_connect" />
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imgbtn_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="?android:attr/actionModeFindDrawable" />
+
+        <TextView
+            android:id="@+id/txt_connect_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Connection Status:"
+            android:textSize="30sp" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_view_gestures"
@@ -33,11 +50,24 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_acceleration_and_orientation" />
 
-    <Button
-        android:id="@+id/btn_available_sensors"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_list_available_sensors" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btn_available_sensors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_list_available_sensors"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:id="@+id/imgbtn_list_sensors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_more" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_calibrate"
@@ -45,4 +75,4 @@
         android:layout_height="wrap_content"
         android:text="Calibrate gestures" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>

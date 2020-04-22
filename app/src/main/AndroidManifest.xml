@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CalibrateDownUpActivity"
+            android:label="Calibrate down up"
+            android:parentActivityName=".PerformableGesturesActivity"/>
+        <activity
+            android:name=".RotateActivity"
+            android:label="Rotate Left or Right"
+            android:parentActivityName=".PerformableGesturesActivity" />
         <activity
             android:name=".CalibrateActivity"
             android:label="Select gesture to calibrate"

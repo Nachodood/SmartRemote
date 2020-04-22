@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">SmartRemote</string>
-    <string name="btn_connect">Connect</string>
+    <string name="btn_connect">Connect to a device</string>
     <string name="txt_welcome">Choose what you would like to do from the options below</string>
     <string name="btn_view_gestures">View performable gestures</string>
     <string name="btn_list_available_sensors">List available sensors</string>

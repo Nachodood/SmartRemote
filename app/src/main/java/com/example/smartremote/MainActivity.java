@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -17,24 +18,26 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+//https://developer.android.com/reference/android/net/wifi/WifiManager
+//https://developer.android.com/training/connect-devices-wirelessly/wifi-direct Create P2P connections with Wi-Fi Direct
+
+//https://developers.google.com/nearby/connections/overview:///////////////////////////////////
+    /*Some example use cases:
+Collaborative whiteboard: Jot ideas down with nearby participants on a shared virtual whiteboard.
+Local multiplayer gaming: Set up a multiplayer game and invite other users nearby to join.
+Multi-screen gaming: Use a phone or tablet as a game controller to play games displayed on a nearby large-screen Android device, such as Android TV.
+Offline file transfers: Share photos, videos, or any other type of data quickly and without requiring a network connection.
+     */
+//https://developer.android.com/training/connect-devices-wirelessly
+//https://developer.android.com/guide/topics/connectivity/wifi-scan Wi-Fi scanning overview
 public class MainActivity extends AppCompatActivity {
 
-    Button  m_btnConnect,
-            m_btnViewGestures,
+    Button  m_btnViewGestures,
             m_btnSensorTest,
-            m_btnAvailableSensors,
             m_btnCalibrate;
 
-    ListView m_listAvailableSensors;
-
-    List<Sensor> m_deviceSensorsList;
-    ArrayList<String> m_StringSensorsList;
-    ScrollListAdapter m_customListAdapter;
-
-    Sensor m_currentSensor;
-    String m_currentSensorString;
-
-    SensorManager sensorManager;
+    ImageButton m_btnAvailableSensors,
+                m_imgbtnConnect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
        //stuff was here
 
-        m_btnConnect = findViewById(R.id.btn_connect);
-        m_btnConnect.setOnClickListener(new View.OnClickListener() {
+        m_imgbtnConnect = findViewById(R.id.imgbtn_connect);
+        m_imgbtnConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent connectActivityIntent = new Intent(MainActivity.this,
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        m_btnAvailableSensors = findViewById(R.id.btn_available_sensors);
+        m_btnAvailableSensors = findViewById(R.id.imgbtn_list_sensors);
         m_btnAvailableSensors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
