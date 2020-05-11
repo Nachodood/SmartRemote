@@ -18,9 +18,9 @@ import android.widget.TextView;
         float highestZ = 0;
         float lowestZ = 0;
 
-        TextView mtxtView_Accel,
-                mtxt_highestZ,
-                mtxt_lowestZ;
+        TextView m_txtView_Accel,
+                m_txt_highestZ,
+                m_txt_lowestZ;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,9 @@ import android.widget.TextView;
             // Enable the Up button
             ab.setDisplayHomeAsUpEnabled(true);
 
-            mtxtView_Accel = findViewById(R.id.txt_accel);
-            mtxt_highestZ = findViewById(R.id.txt_highest_Z);
-            mtxt_lowestZ = findViewById(R.id.txt_lowest_z);
+            m_txtView_Accel = findViewById(R.id.txt_accel);
+            m_txt_highestZ = findViewById(R.id.txt_highest_Z);
+            m_txt_lowestZ = findViewById(R.id.txt_lowest_z);
 
             msensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
             //linear acceleration = acceleration - acceleration due to gravity
@@ -59,10 +59,10 @@ import android.widget.TextView;
                 lowestZ = z;
             }
 
-            mtxt_lowestZ.setText("Lowest z: " + lowestZ);
+            m_txt_lowestZ.setText("Lowest z: " + lowestZ);
 
-            mtxt_highestZ.setText("Highest z: " + highestZ);
-            mtxtView_Accel.setText("x: " + (int) x + " y: " + (int) y + " z: " + (int) z);
+            m_txt_highestZ.setText("Highest z: " + highestZ);
+            m_txtView_Accel.setText("x: " + (int) x + " y: " + (int) y + " z: " + (int) z);
         /*if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             float x = sensorEvent.values[0];
             float y = sensorEvent.values[1];
@@ -73,7 +73,7 @@ import android.widget.TextView;
             if ((curTime - lastUpdate) > 100) {
                 long diffTime = (curTime - lastUpdate);
                 lastUpdate = curTime;
-                mtxtView_Accel.setText((int) x);
+                m_txtView_Accel.setText((int) x);
             }
         }*/
 

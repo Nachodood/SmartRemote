@@ -72,7 +72,6 @@ public class RotateActivity extends AppCompatActivity  implements SensorEventLis
 
         //m_txtIsComplete.setProgress(0);
         //m_txtIsComplete.setMax(100);
-
     }
 
         @Override
@@ -81,7 +80,6 @@ public class RotateActivity extends AppCompatActivity  implements SensorEventLis
             synchronized (this) {
 
                 switch (sensorEvent.sensor.getType()) {
-
 
                     case Sensor.TYPE_ORIENTATION:
                         ;
