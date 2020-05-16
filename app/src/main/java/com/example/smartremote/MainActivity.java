@@ -66,16 +66,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        m_btnViewGestures = findViewById(R.id.btn_view_gestures);
-        m_btnViewGestures.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent viewGesturesIntent = new Intent(MainActivity.this,
-                        PerformableGesturesActivity.class);
-                startActivity(viewGesturesIntent);
-            }
-        });
-
         m_btnSensorTest = findViewById(R.id.btn_sensor_test);
         m_btnSensorTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +76,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
+        m_btnViewGestures = findViewById(R.id.btn_view_gestures);
+        m_btnViewGestures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent viewGesturesIntent = new Intent(MainActivity.this,
+                        PerformableGesturesActivity.class);
+                startActivity(viewGesturesIntent);
+            }
+        });
+
+
+
         m_btnAvailableSensors = findViewById(R.id.imgbtn_list_sensors);
         m_btnAvailableSensors.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,9 +96,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent availableSensorsIntent = new Intent(MainActivity.this,
                         AvailableSensors.class);
                 startActivity(availableSensorsIntent);
+
             }
         });
-
+        */
 
     }
 }

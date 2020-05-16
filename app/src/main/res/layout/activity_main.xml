@@ -8,12 +8,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/txt_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_welcome"
         android:textSize="30sp" />
+        -->
 
     <LinearLayout
         android:id="@+id/linlay_connect"
@@ -38,11 +39,11 @@
 
     </LinearLayout>
 
-    <Button
+    <!--<Button
         android:id="@+id/btn_view_gestures"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_view_gestures" />
+        android:text="@string/btn_view_gestures" /> -->
 
     <Button
         android:id="@+id/btn_sensor_test"
@@ -50,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_acceleration_and_orientation" />
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -65,9 +66,9 @@
         <ImageButton
             android:id="@+id/imgbtn_list_sensors"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:srcCompat="@android:drawable/ic_menu_more" />
-    </LinearLayout>
+    </LinearLayout> -->
 
     <Button
         android:id="@+id/btn_calibrate"
