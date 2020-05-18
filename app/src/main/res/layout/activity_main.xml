@@ -27,15 +27,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="?android:attr/actionModeFindDrawable" />
+            app:srcCompat="?android:attr/actionModeFindDrawable"
+            android:contentDescription="@string/todo" />
 
         <TextView
             android:id="@+id/txt_connect_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Connection Status:"
-            android:textSize="30sp" />
+            android:text="@string/connection_status"
+            android:textSize="25sp" />
 
     </LinearLayout>
 
@@ -44,6 +45,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_view_gestures" /> -->
+
+    <TextView
+        android:id="@+id/txt_connected_devices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/connected_devices"
+        android:textSize="20sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ScrollView>
 
     <Button
         android:id="@+id/btn_sensor_test"
@@ -74,6 +89,13 @@
         android:id="@+id/btn_calibrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calibrate gestures" />
+        android:text="@string/calibrate_gestures" />
+
+    <TextView
+        android:id="@+id/txt_yaw_val"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/yaw_val" />
 
 </LinearLayout>

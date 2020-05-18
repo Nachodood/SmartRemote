@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
@@ -30,7 +32,7 @@ Offline file transfers: Share photos, videos, or any other type of data quickly 
      */
 //https://developer.android.com/training/connect-devices-wirelessly
 //https://developer.android.com/guide/topics/connectivity/wifi-scan Wi-Fi scanning overview
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     Button  m_btnViewGestures,
             m_btnSensorTest,
@@ -100,6 +102,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         */
+
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 }

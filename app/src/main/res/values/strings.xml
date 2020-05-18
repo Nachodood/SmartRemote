@@ -5,4 +5,9 @@
     <string name="btn_view_gestures">View performable gestures</string>
     <string name="btn_list_available_sensors">List available sensors</string>
     <string name="btn_acceleration_and_orientation">View acceleration and orientation</string>
+    <string name="connection_status">Connection Status:</string>
+    <string name="connected_devices">Connected Devices:</string>
+    <string name="todo">TODO</string>
+    <string name="calibrate_gestures">Calibrate gestures</string>
+    <string name="yaw_val">Yaw Val:</string>
 </resources>
