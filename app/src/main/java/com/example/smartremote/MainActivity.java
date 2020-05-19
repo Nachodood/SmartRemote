@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     Button  m_btnViewGestures,
             m_btnSensorTest,
-            m_btnCalibrate;
+            m_btnCalibrate,
+            m_btnAddDevice;
 
     ImageButton m_btnAvailableSensors,
                 m_imgbtnConnect;
@@ -75,6 +76,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Intent sensorTestIntent = new Intent(MainActivity.this,
                         SensorTest.class);
                 startActivity(sensorTestIntent);
+            }
+        });
+
+        m_btnAddDevice = findViewById(R.id.btn_add_device);
+        m_btnAddDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addDeviceIntent = new Intent(MainActivity.this,
+                        AddDeviceActivity.class);
+                startActivity(addDeviceIntent);
             }
         });
 
