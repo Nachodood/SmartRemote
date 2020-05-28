@@ -18,32 +18,25 @@
 
     <LinearLayout
         android:id="@+id/linlay_connect"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/imgbtn_connect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="?android:attr/actionModeFindDrawable"
-            android:contentDescription="@string/todo" />
-
         <TextView
             android:id="@+id/txt_connect_status"
-            android:layout_width="wrap_content"
+            android:layout_width="478dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/connection_status"
             android:textSize="25sp" />
 
-        <Button
-            android:id="@+id/btn_add_device"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/add_device" />
+        <Switch
+            android:id="@+id/switch_wifi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
@@ -66,6 +59,18 @@
         android:layout_height="wrap_content">
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_add_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_device" />
+
+    <Button
+        android:id="@+id/btn_calibrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/calibrate_gestures" />
 
     <Button
         android:id="@+id/btn_sensor_test"
@@ -91,18 +96,5 @@
             android:layout_height="match_parent"
             app:srcCompat="@android:drawable/ic_menu_more" />
     </LinearLayout> -->
-
-    <Button
-        android:id="@+id/btn_calibrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/calibrate_gestures" />
-
-    <TextView
-        android:id="@+id/txt_yaw_val"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/yaw_val" />
 
 </LinearLayout>

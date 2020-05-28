@@ -8,13 +8,16 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,6 +37,10 @@ Offline file transfers: Share photos, videos, or any other type of data quickly 
 //https://developer.android.com/guide/topics/connectivity/wifi-scan Wi-Fi scanning overview
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
+    TextView m_wifiStatusText;
+    Switch m_wifiStatusSwitch;
+    WifiManager m_wifiManager;
+
     Button  m_btnViewGestures,
             m_btnSensorTest,
             m_btnCalibrate,
@@ -46,18 +53,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-       //stuff was here
-
-        m_imgbtnConnect = findViewById(R.id.imgbtn_connect);
-        m_imgbtnConnect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent connectActivityIntent = new Intent(MainActivity.this,
-                        ConnectActivity.class);
-                startActivity(connectActivityIntent);
-            }
-        });
 
         m_btnCalibrate = findViewById(R.id.btn_calibrate);
         m_btnCalibrate.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +109,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         });
         */
 
+        m_wifiStatusText = findViewById(R.id.txt_connect_status);
+        m_wifiStatusSwitch = findViewById(R.id.switch_wifi);
+        m_wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+
+        switchWifiSetup();
+
+        m_wifiStatusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+                if(isChecked) {
+                    m_wifiStatusText.setText("Wifi: On");
+                    EnableWiFi();
+                } else {
+                    m_wifiStatusText.setText("Wifi: Of");
+                    DisableWiFi();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -124,5 +139,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+    public void switchWifiSetup(){
+        if(m_wifiManager.isWifiEnabled()){
+            m_wifiStatusText.setText("Wifi: ON");
+            m_wifiStatusSwitch.setChecked(true);
+        }
+        else
+        {
+            m_wifiStatusText.setText("Wifi: Off");
+            m_wifiStatusSwitch.setChecked(false);
+        }
+    }
+
+    public void EnableWiFi(){
+
+        m_wifiManager.setWifiEnabled(true);
+    }
+    public void DisableWiFi(){
+        m_wifiManager.setWifiEnabled(false);
     }
 }
