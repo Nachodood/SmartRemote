@@ -3,6 +3,7 @@ package com.example.smartremote;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -34,13 +37,15 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
     //TextView m_txtCompassValues;
     Button m_btnBtnSaveDeviceValues;
 
+    TextView m_txtCompassValues;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_device);
         
         //The user doesn't need to see the compass values
-        //m_txtCompassValues = findViewById(R.id.txt_compass_value);
+        m_txtCompassValues = findViewById(R.id.m_txtCompassValues);
 
         m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
@@ -73,6 +78,13 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
         m_nameOfDevice = m_editText_name.getText().toString();
         m_room = m_editText_room.getText().toString();
         //m_CompassXValue;
+
+        Intent i = new Intent(this, SelectDeviceActivity.class);
+        i.putExtra("DeviceName", m_nameOfDevice);
+        i.putExtra("DeviceRoom", m_room);
+        i.putExtra("CompassX", m_CompassXValue);
+        //i.putExtra("Altitude", m_altitudeValue);
+        startActivity(i);
     }
 
     private final SensorEventListener mListener = new SensorEventListener() {
@@ -82,7 +94,7 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
 
             m_CompassXValue = (int) event.values[0];
 
-            //m_txtCompassValues.setText("X axis: " +  m_CompassXValue/*+ ", " + event.values[1] + ", " + event.values[2]*/);
+            m_txtCompassValues.setText("X axis: " +  m_CompassXValue/*+ ", " + event.values[1] + ", " + event.values[2]*/);
 
         }
 
