@@ -17,12 +17,12 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
     private static final String TAG = "Compass";
 
     private SensorManager m_sensorManager;
-    private Sensor m_sensor;
+    private Sensor m_compassSensor, m_altitudeSensor;
 
     float[] mValues;
     int m_CompassXValue;
 
-    TextView m_txtCompassValues;
+    //TextView m_txtCompassValues;
     Button m_saveCompassXValue;
 
 
@@ -31,14 +31,21 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_device);
 
-        m_txtCompassValues = findViewById(R.id.txt_compass_value);
+        //TODO:Implement sensors list, either here or at main, maybe both
+
+        //The user doesn't need to see the compass values
+        //m_txtCompassValues = findViewById(R.id.txt_compass_value);
 
         m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        m_sensor = m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+        m_compassSensor = m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 
-        m_sensorManager.registerListener(mListener, m_sensor, 100);
+        //TODO:Finish this
+        m_altitudeSensor = m_sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
 
-        m_saveCompassXValue = findViewById(R.id.btn_save_x_value);
+
+        m_sensorManager.registerListener(mListener, m_compassSensor, 100);
+
+        m_saveCompassXValue = findViewById(R.id.btn_save_device);
         m_saveCompassXValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +62,7 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
 
             m_CompassXValue = (int) event.values[0];
 
-            m_txtCompassValues.setText("X axis: " +  m_CompassXValue/*+ ", " + event.values[1] + ", " + event.values[2]*/);
+            //m_txtCompassValues.setText("X axis: " +  m_CompassXValue/*+ ", " + event.values[1] + ", " + event.values[2]*/);
 
         }
 

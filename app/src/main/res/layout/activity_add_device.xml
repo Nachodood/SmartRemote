@@ -7,31 +7,39 @@
     android:orientation="vertical"
     tools:context=".AddDeviceActivity">
 
+    <EditText
+        android:id="@+id/editText_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name of device" />
+
+    <EditText
+        android:id="@+id/editText_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Room" />
+
     <TextView
-        android:id="@+id/txt_compass_value"
+        android:id="@+id/txt_point_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Point to device and press save"
         android:textSize="25sp" />
 
     <Button
-        android:id="@+id/btn_save_x_value"
+        android:id="@+id/btn_save_device"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save point" />
+        android:text="Save details" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txt_device_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Device type:" />
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
     <ScrollView
         android:id="@+id/scrl_device_list"
