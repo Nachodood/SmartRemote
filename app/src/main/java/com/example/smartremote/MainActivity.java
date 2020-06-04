@@ -7,21 +7,15 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 //https://developer.android.com/reference/android/net/wifi/WifiManager
 //https://developer.android.com/training/connect-devices-wirelessly/wifi-direct Create P2P connections with Wi-Fi Direct
@@ -35,19 +29,21 @@ Offline file transfers: Share photos, videos, or any other type of data quickly 
      */
 //https://developer.android.com/training/connect-devices-wirelessly
 //https://developer.android.com/guide/topics/connectivity/wifi-scan Wi-Fi scanning overview
+
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     TextView m_wifiStatusText;
     Switch m_wifiStatusSwitch;
     WifiManager m_wifiManager;
 
-    Button  m_btnViewGestures,
-            m_btnSensorTest,
-            m_btnCalibrate,
-            m_btnAddDevice;
+    Button  //m_btnViewGestures,
+            //m_btnSensorTest,
+            m_btnCalibrate;
 
-    ImageButton m_btnAvailableSensors,
-                m_imgbtnConnect;
+    FloatingActionButton m_fabAddDevice;
+
+    //ImageButton m_btnAvailableSensors,
+    //            m_imgbtnConnect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
-        m_btnSensorTest = findViewById(R.id.btn_sensor_test);
+        /*m_btnSensorTest = findViewById(R.id.btn_sensor_test);
         m_btnSensorTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,9 +69,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 startActivity(sensorTestIntent);
             }
         });
+        */
 
-        m_btnAddDevice = findViewById(R.id.btn_add_device);
-        m_btnAddDevice.setOnClickListener(new View.OnClickListener() {
+        m_fabAddDevice = findViewById(R.id.fab_add_device);
+        m_fabAddDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent addDeviceIntent = new Intent(MainActivity.this,
@@ -113,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         m_wifiStatusSwitch = findViewById(R.id.switch_wifi);
         m_wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
+        //Sync device status and switch
         switchWifiSetup();
 
         m_wifiStatusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -141,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+     //Sync the wifi switch button to the current state of the device's wifi
     public void switchWifiSetup(){
         if(m_wifiManager.isWifiEnabled()){
             m_wifiStatusText.setText("Wifi: ON");
@@ -153,10 +152,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
     }
 
-    public void EnableWiFi(){
-
-        m_wifiManager.setWifiEnabled(true);
-    }
+    public void EnableWiFi(){ m_wifiManager.setWifiEnabled(true); }
     public void DisableWiFi(){
         m_wifiManager.setWifiEnabled(false);
     }

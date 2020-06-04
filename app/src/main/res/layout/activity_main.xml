@@ -40,12 +40,6 @@
 
     </LinearLayout>
 
-    <!--<Button
-        android:id="@+id/btn_view_gestures"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_view_gestures" /> -->
-
     <TextView
         android:id="@+id/txt_connected_devices"
         android:layout_width="wrap_content"
@@ -54,47 +48,61 @@
         android:text="@string/connected_devices"
         android:textSize="20sp" />
 
+    <!--<Button
+        android:id="@+id/btn_view_gestures"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_view_gestures" /> -->
+
     <ScrollView
+        android:id="@+id/scrl_devices"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn_add_device"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_device" />
-
-    <Button
-        android:id="@+id/btn_calibrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/calibrate_gestures" />
-
-    <Button
-        android:id="@+id/btn_sensor_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_acceleration_and_orientation" />
-
-    <!--<LinearLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/btn_available_sensors"
+        <Button
+            android:id="@+id/btn_calibrate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_list_available_sensors"
-            android:textSize="30sp" />
+            android:text="@string/calibrate_gestures" />
 
-        <ImageButton
-            android:id="@+id/imgbtn_list_sensors"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_device"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:srcCompat="@android:drawable/ic_menu_more" />
-    </LinearLayout> -->
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_input_add" />
+
+    </LinearLayout>
+
+    <!--<Button
+       android:id="@+id/btn_sensor_test"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/btn_acceleration_and_orientation" />
+
+<LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+
+       <TextView
+           android:id="@+id/btn_available_sensors"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/btn_list_available_sensors"
+           android:textSize="30sp" />
+
+       <ImageButton
+           android:id="@+id/imgbtn_list_sensors"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           app:srcCompat="@android:drawable/ic_menu_more" />
+   </LinearLayout> -->
 
 </LinearLayout>
