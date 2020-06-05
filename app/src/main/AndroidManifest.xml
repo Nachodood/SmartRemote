@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectDeviceActivity"></activity>
+        <activity android:name=".ManageDevicesActivity"></activity>
+        <activity android:name=".SelectDeviceActivity" />
         <activity android:name=".AddDeviceActivity" />
         <activity
             android:name=".CalibrateDownUpActivity"

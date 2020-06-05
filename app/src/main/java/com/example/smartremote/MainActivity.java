@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -46,14 +47,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     WifiManager m_wifiManager;
     SensorManager m_sensorManager;
 
-     Sensor m_sensorAccel;
+     Sensor m_sensorAccel, m_sensorGyro; //TODO altitude
 
     List<Sensor> m_deviceSensorsList;
     ArrayList<Sensor> m_requiredSensorsList;
 
     Button  //m_btnViewGestures,
             //m_btnSensorTest,
-            m_btnCalibrate;
+            m_btnCalibrate,
+            m_btnManageDevicesActivity;
 
     FloatingActionButton m_fabAddDevice;
 
@@ -66,12 +68,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
         //TODO: Pressure/barometer
-        m_sensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        m_sensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        //TODO: Gyroscope or orientation? Orientation is probably a soft sensor
+        m_sensorGyro = m_sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
-        m_requiredSensorsList = new ArrayList<Sensor>();
+        //m_requiredSensorsList = new ArrayList<Sensor>();
 
-        setupSensors();
+
+        deviceHasSensors();
 
         m_btnCalibrate = findViewById(R.id.btn_calibrate);
         m_btnCalibrate.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +100,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
         */
+
+        m_btnManageDevicesActivity = findViewById(R.id.btn_manage_devices);
+        m_btnManageDevicesActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent manageDevicesActivityIntent = new Intent(MainActivity.this,
+                        ManageDevicesActivity.class);
+                startActivity(manageDevicesActivityIntent);
+            }
+        });
 
         m_fabAddDevice = findViewById(R.id.fab_add_device);
         m_fabAddDevice.setOnClickListener(new View.OnClickListener() {
@@ -152,11 +169,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    private void setupSensors() {
-        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+    //Check if device has all sensors
+    private void deviceHasSensors() {
+
         m_deviceSensorsList = m_sensorManager.getSensorList(Sensor.TYPE_ALL);
+        m_requiredSensorsList = new ArrayList<Sensor>();
 
         m_requiredSensorsList.add(m_sensorAccel);
+        m_requiredSensorsList.add(m_sensorGyro);
+
+        if (m_deviceSensorsList.contains(m_sensorAccel)) {
+            //Toast.makeText(getApplicationContext(),"m_sensorAccel",Toast.LENGTH_SHORT).show();
+        }
+
+        if (m_deviceSensorsList.contains(m_sensorGyro)) {
+            //Toast.makeText(getApplicationContext(),"m_sensorGyro",Toast.LENGTH_SHORT).show();
+        }
+        if (m_deviceSensorsList.contains(m_sensorGyro)) {
+            //Toast.makeText(getApplicationContext(),"m_sensorGyro",Toast.LENGTH_SHORT).show();
+        }
 
     }
 

@@ -21,7 +21,7 @@ public class CalibrateDownUpActivity extends AppCompatActivity implements Sensor
 
     private Button btnStart, btnStop;
 
-    private SensorManager msensorManager;
+    private SensorManager m_sensorManager;
     private Sensor mSensorAccel;
 
     @Override
@@ -54,15 +54,15 @@ public class CalibrateDownUpActivity extends AppCompatActivity implements Sensor
 
         m_txtIsComplete = findViewById(R.id.txt_is_complete);
 
-        msensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         //linear acceleration = acceleration - acceleration due to gravity
-        mSensorAccel = msensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-        msensorManager.registerListener(this, mSensorAccel, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        m_sensorManager.registerListener(this, mSensorAccel, SensorManager.SENSOR_DELAY_NORMAL);
 
-        msensorManager.registerListener(this,
-                msensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
-                msensorManager.SENSOR_DELAY_GAME);
+        m_sensorManager.registerListener(this,
+                m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
+                m_sensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override
