@@ -1,5 +1,7 @@
 package com.example.smartremote;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +19,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 //https://developer.android.com/reference/android/net/wifi/WifiManager
 //https://developer.android.com/training/connect-devices-wirelessly/wifi-direct Create P2P connections with Wi-Fi Direct
@@ -35,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView m_wifiStatusText;
     Switch m_wifiStatusSwitch;
     WifiManager m_wifiManager;
+    SensorManager m_sensorManager;
+
+     Sensor m_sensorAccel;
+
+    List<Sensor> m_deviceSensorsList;
+    ArrayList<Sensor> m_requiredSensorsList;
 
     Button  //m_btnViewGestures,
             //m_btnSensorTest,
@@ -44,11 +59,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     //ImageButton m_btnAvailableSensors,
     //            m_imgbtnConnect;
+    //TODO: I need to add onResume(), onResume() etc. See SensorTest.java
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //TODO: Pressure/barometer
+        m_sensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+
+        m_requiredSensorsList = new ArrayList<Sensor>();
+
+        setupSensors();
 
         m_btnCalibrate = findViewById(R.id.btn_calibrate);
         m_btnCalibrate.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +149,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
             }
         });
+
+    }
+
+    private void setupSensors() {
+        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        m_deviceSensorsList = m_sensorManager.getSensorList(Sensor.TYPE_ALL);
+
+        m_requiredSensorsList.add(m_sensorAccel);
 
     }
 

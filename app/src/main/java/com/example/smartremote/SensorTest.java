@@ -15,6 +15,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SensorTest extends Activity implements SensorEventListener  {
+
     SensorManager sensorManager = null;
     //for accelerometer values
     TextView outputX;
