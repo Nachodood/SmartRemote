@@ -44,23 +44,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     TextView m_wifiStatusText;
     Switch m_wifiStatusSwitch;
-    WifiManager m_wifiManager;
-    SensorManager m_sensorManager;
 
-     Sensor m_sensorAccel, m_sensorGyro; //TODO altitude
+    WifiManager m_wifiManager;
+
+    SensorManager m_sensorManager;
+    Sensor m_sensorAccel, m_sensorGyro; //TODO altitude
 
     List<Sensor> m_deviceSensorsList;
     ArrayList<Sensor> m_requiredSensorsList;
 
-    Button  //m_btnViewGestures,
-            //m_btnSensorTest,
-            m_btnCalibrate,
-            m_btnManageDevicesActivity;
-
+    Button  m_btnManageDevicesActivity;
     FloatingActionButton m_fabAddDevice;
 
-    //ImageButton m_btnAvailableSensors,
-    //            m_imgbtnConnect;
     //TODO: I need to add onResume(), onResume() etc. See SensorTest.java
 
     @Override
@@ -75,20 +70,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //TODO: Gyroscope or orientation? Orientation is probably a soft sensor
         m_sensorGyro = m_sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
-        //m_requiredSensorsList = new ArrayList<Sensor>();
-
-
         deviceHasSensors();
-
-        m_btnCalibrate = findViewById(R.id.btn_calibrate);
-        m_btnCalibrate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent calibrateActivityIntent = new Intent(MainActivity.this,
-                        CalibrateActivity.class);
-                startActivity(calibrateActivityIntent);
-            }
-        });
+        setupButtons();
 
         /*m_btnSensorTest = findViewById(R.id.btn_sensor_test);
         m_btnSensorTest.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +152,32 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+    private void setupButtons() {
+
+        m_btnManageDevicesActivity = findViewById(R.id.btn_manage_devices);
+        m_btnManageDevicesActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent manageDevicesActivityIntent = new Intent(MainActivity.this,
+                        ManageDevicesActivity.class);
+                startActivity(manageDevicesActivityIntent);
+            }
+        });
+
+        m_fabAddDevice = findViewById(R.id.fab_add_device);
+        m_fabAddDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addDeviceIntent = new Intent(MainActivity.this,
+                        AddDeviceActivity.class);
+                startActivity(addDeviceIntent);
+            }
+        });
+
+    }
+
     //Check if device has all sensors
+    //Return if required sensor is unavailable, give notification and limit functions/features
     private void deviceHasSensors() {
 
         m_deviceSensorsList = m_sensorManager.getSensorList(Sensor.TYPE_ALL);

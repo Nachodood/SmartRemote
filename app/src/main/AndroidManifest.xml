@@ -26,7 +26,7 @@
             android:parentActivityName=".PerformableGesturesActivity" />
         <activity
             android:name=".CalibrateActivity"
-            android:label="Select gesture to calibrate"
+            android:label="Calibrate gestures"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AccelFlickActivity"
