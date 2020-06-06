@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class SelectDeviceActivity extends AppCompatActivity {
 
     TextView m_txtName, m_txtRoom, m_txtCompass;
+    Button m_btnSelectDevice;
 
     String m_name, m_room, tag;
 
@@ -45,5 +48,15 @@ public class SelectDeviceActivity extends AppCompatActivity {
         m_compass = m_extras.getInt("CompassX");
         m_txtCompass = findViewById(R.id.txt_compass);
         m_txtCompass.setText("Compass " + m_compass);
+
+        m_btnSelectDevice = findViewById(R.id.btn_select_device);
+        m_btnSelectDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent selectDeviceIntent = new Intent(SelectDeviceActivity.this,
+                        CalibrateActivity.class);
+                startActivity(selectDeviceIntent);
+            }
+        });
     }
 }
