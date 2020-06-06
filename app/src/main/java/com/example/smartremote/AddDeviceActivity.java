@@ -1,5 +1,6 @@
 package com.example.smartremote;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -43,6 +44,11 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_device);
+
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
         
         //The user doesn't need to see the compass values
         m_txtCompassValues = findViewById(R.id.m_txtCompassValues);
@@ -68,7 +74,6 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
         });
 
         m_editText_name = findViewById(R.id.editText_name);
-
 
         m_editText_room = findViewById(R.id.editText_room);
 

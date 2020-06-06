@@ -62,16 +62,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-
-        //TODO: Pressure/barometer
-        m_sensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        //TODO: Gyroscope or orientation? Orientation is probably a soft sensor
-        m_sensorGyro = m_sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-
+        
+        setupSensors();
         deviceHasSensors();
-        setupButtons();
+        setupView();
 
         /*m_btnSensorTest = findViewById(R.id.btn_sensor_test);
         m_btnSensorTest.setOnClickListener(new View.OnClickListener() {
@@ -83,26 +77,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
         */
-
-        m_btnManageDevicesActivity = findViewById(R.id.btn_manage_devices);
-        m_btnManageDevicesActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent manageDevicesActivityIntent = new Intent(MainActivity.this,
-                        ManageDevicesActivity.class);
-                startActivity(manageDevicesActivityIntent);
-            }
-        });
-
-        m_fabAddDevice = findViewById(R.id.fab_add_device);
-        m_fabAddDevice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addDeviceIntent = new Intent(MainActivity.this,
-                        AddDeviceActivity.class);
-                startActivity(addDeviceIntent);
-            }
-        });
 
         /*
         m_btnViewGestures = findViewById(R.id.btn_view_gestures);
@@ -129,30 +103,24 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         });
         */
 
-        m_wifiStatusText = findViewById(R.id.txt_connect_status);
-        m_wifiStatusSwitch = findViewById(R.id.switch_wifi);
         m_wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
         //Sync device status and switch
         switchWifiSetup();
 
-        m_wifiStatusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // TODO Auto-generated method stub
-                if(isChecked) {
-                    m_wifiStatusText.setText("Wifi: On");
-                    EnableWiFi();
-                } else {
-                    m_wifiStatusText.setText("Wifi: Of");
-                    DisableWiFi();
-                }
-            }
-        });
-
     }
 
-    private void setupButtons() {
+    private void setupSensors() {
+        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        //TODO: Pressure/barometer
+        m_sensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        //TODO: Gyroscope or orientation? Orientation is probably a soft sensor
+        m_sensorGyro = m_sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+        
+    }
+
+    private void setupView() {
 
         m_btnManageDevicesActivity = findViewById(R.id.btn_manage_devices);
         m_btnManageDevicesActivity.setOnClickListener(new View.OnClickListener() {
@@ -171,6 +139,43 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Intent addDeviceIntent = new Intent(MainActivity.this,
                         AddDeviceActivity.class);
                 startActivity(addDeviceIntent);
+            }
+        });
+
+        m_btnManageDevicesActivity = findViewById(R.id.btn_manage_devices);
+        m_btnManageDevicesActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent manageDevicesActivityIntent = new Intent(MainActivity.this,
+                        ManageDevicesActivity.class);
+                startActivity(manageDevicesActivityIntent);
+            }
+        });
+
+        m_fabAddDevice = findViewById(R.id.fab_add_device);
+        m_fabAddDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addDeviceIntent = new Intent(MainActivity.this,
+                        AddDeviceActivity.class);
+                startActivity(addDeviceIntent);
+            }
+        });
+
+        m_wifiStatusText = findViewById(R.id.txt_connect_status);
+        m_wifiStatusSwitch = findViewById(R.id.switch_wifi);
+
+        m_wifiStatusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+                if(isChecked) {
+                    m_wifiStatusText.setText("Wifi: On");
+                    EnableWiFi();
+                } else {
+                    m_wifiStatusText.setText("Wifi: Of");
+                    DisableWiFi();
+                }
             }
         });
 

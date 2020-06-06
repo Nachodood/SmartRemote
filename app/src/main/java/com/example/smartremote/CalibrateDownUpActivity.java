@@ -18,6 +18,7 @@ public class CalibrateDownUpActivity extends AppCompatActivity implements Sensor
     private float m_ZFlickThreshold = 10;
     private Boolean isInCalMode = false;
 
+
     private TextView m_txtIsComplete;
     private Button btnStart, btnStop;
 
