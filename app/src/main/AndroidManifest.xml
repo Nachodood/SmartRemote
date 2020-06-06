@@ -13,40 +13,57 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ManageDevicesActivity"></activity>
-        <activity android:name=".SelectDeviceActivity" />
-        <activity android:name=".AddDeviceActivity" />
+        <activity
+            android:name=".ManageDevicesActivity"
+            android:label="Manage Devices"
+            />
+        <activity
+            android:name=".SelectDeviceActivity"
+            android:label="Select a device"
+            />
+        <activity
+            android:name=".AddDeviceActivity"
+            android:label="Add a Device"
+            />
         <activity
             android:name=".CalibrateDownUpActivity"
             android:label="Calibrate down up"
-            android:parentActivityName=".PerformableGesturesActivity" />
+            android:parentActivityName=".PerformableGesturesActivity"
+            />
         <activity
             android:name=".RotateActivity"
             android:label="Rotate Left or Right"
-            android:parentActivityName=".PerformableGesturesActivity" />
+            android:parentActivityName=".PerformableGesturesActivity"
+            />
         <activity
             android:name=".CalibrateActivity"
-            android:label="Calibrate gestures"
-            android:parentActivityName=".MainActivity" />
+            android:label="Assign gestures"
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".AccelFlickActivity"
             android:label="AccelFlickActivity"
-            android:parentActivityName=".PerformableGesturesActivity" />
+            android:parentActivityName=".PerformableGesturesActivity"
+            />
         <activity
             android:name=".AvailableSensors"
             android:label="Available sensors"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".SensorTest"
-            android:label="Sensor test" />
+            android:label="Sensor test"
+            />
         <activity
             android:name=".PerformableGesturesActivity"
             android:label="Performable gestures"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            />
         <activity
             android:name=".ConnectActivity"
             android:label="Connect to a device"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

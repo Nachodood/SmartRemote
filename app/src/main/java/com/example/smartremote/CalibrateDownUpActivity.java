@@ -16,9 +16,9 @@ import android.widget.TextView;
 public class CalibrateDownUpActivity extends AppCompatActivity implements SensorEventListener {
 
     private float m_ZFlickThreshold = 10;
+    private Boolean isInCalMode = false;
 
     private TextView m_txtIsComplete;
-
     private Button btnStart, btnStop;
 
     private SensorManager m_sensorManager;
@@ -33,6 +33,25 @@ public class CalibrateDownUpActivity extends AppCompatActivity implements Sensor
         ActionBar ab = getSupportActionBar();
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+
+        setupSensorStuff();
+        setupView();
+
+    }
+
+    private void setupSensorStuff() {
+        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        //linear acceleration = acceleration - acceleration due to gravity
+        mSensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        m_sensorManager.registerListener(this, mSensorAccel, SensorManager.SENSOR_DELAY_NORMAL);
+
+        m_sensorManager.registerListener(this,
+                m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
+                m_sensorManager.SENSOR_DELAY_GAME);
+    }
+
+    private void setupView() {
 
         m_txtIsComplete = findViewById(R.id.txt_is_complete);
 
@@ -54,15 +73,6 @@ public class CalibrateDownUpActivity extends AppCompatActivity implements Sensor
 
         m_txtIsComplete = findViewById(R.id.txt_is_complete);
 
-        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-
-        //linear acceleration = acceleration - acceleration due to gravity
-        mSensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-        m_sensorManager.registerListener(this, mSensorAccel, SensorManager.SENSOR_DELAY_NORMAL);
-
-        m_sensorManager.registerListener(this,
-                m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
-                m_sensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override

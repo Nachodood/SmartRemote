@@ -16,7 +16,8 @@ public class CalibrateActivity extends AppCompatActivity {
             m_btnFlickBackward,
             m_btnSHake,
             m_btnUpDown,
-            m_btnDownUp;
+            m_btnDownUp,
+            m_btnComplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,19 @@ public class CalibrateActivity extends AppCompatActivity {
 
         setupButtons();
 
-
-
     }
 
     private void setupButtons() {
+
+        m_btnComplete = findViewById(R.id.btn_complete);
+        m_btnComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent completeIntent = new Intent(CalibrateActivity.this,
+                        MainActivity.class);
+                startActivity(completeIntent);
+            }
+        });
 
         m_btnDownUp = findViewById(R.id.btn_calib_down_up);
         m_btnDownUp.setOnClickListener(new View.OnClickListener() {

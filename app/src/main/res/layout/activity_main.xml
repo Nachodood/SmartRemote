@@ -40,31 +40,22 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_connected_devices"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/connected_devices"
-        android:textSize="20sp" />
-
     <!--<Button
         android:id="@+id/btn_view_gestures"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_view_gestures" /> -->
 
-    <ScrollView
-        android:id="@+id/scrl_devices"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </ScrollView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_input_add" />
 
         <Button
             android:id="@+id/btn_manage_devices"
@@ -73,13 +64,14 @@
             android:layout_weight="1"
             android:text="Manage devices" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_device"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_input_add" />
-
     </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrl_devices"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ScrollView>
 
     <!--<Button
        android:id="@+id/btn_sensor_test"
