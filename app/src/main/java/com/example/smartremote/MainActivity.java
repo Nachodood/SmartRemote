@@ -1,9 +1,5 @@
 package com.example.smartremote;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -17,15 +13,10 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 //https://developer.android.com/reference/android/net/wifi/WifiManager
 //https://developer.android.com/training/connect-devices-wirelessly/wifi-direct Create P2P connections with Wi-Fi Direct
@@ -39,34 +30,6 @@ Offline file transfers: Share photos, videos, or any other type of data quickly 
      */
 //https://developer.android.com/training/connect-devices-wirelessly
 //https://developer.android.com/guide/topics/connectivity/wifi-scan Wi-Fi scanning overview
-
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
-
-    TextView m_wifiStatusText;
-    Switch m_wifiStatusSwitch;
-
-    WifiManager m_wifiManager;
-
-    SensorManager m_sensorManager;
-    Sensor m_sensorAccel, m_sensorGyro; //TODO altitude
-
-    List<Sensor> m_deviceSensorsList;
-    ArrayList<Sensor> m_requiredSensorsList;
-
-    Button  m_btnManageDevicesActivity;
-    FloatingActionButton m_fabAddDevice;
-
-    //TODO: I need to add onResume(), onResume() etc. See SensorTest.java
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        setupSensors();
-        deviceHasSensors();
-        setupView();
-
         /*m_btnSensorTest = findViewById(R.id.btn_sensor_test);
         m_btnSensorTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +66,32 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         });
         */
 
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
+
+    TextView m_wifiStatusText;
+    Switch m_wifiStatusSwitch;
+    Button  m_btnManageDevicesActivity;
+    FloatingActionButton m_fabAddDevice;
+
+    WifiManager m_wifiManager;
+
+    SensorManager m_sensorManager;
+    Sensor m_sensorAccel, m_sensorGyro; //TODO altitude
+
+    List<Sensor> m_deviceSensorsList;
+    ArrayList<Sensor> m_requiredSensorsList;
+
+    //TODO: I need to add onResume(), onResume() etc. See SensorTest.java
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        setupSensors();
+        deviceHasSensors();
+        setupView();
+
         m_wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
         //Sync device status and switch
@@ -110,15 +99,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    private void setupSensors() {
-        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+    /////////////////////////////////////////////////////// WIFI STUFF ///////////////////////////////////////////////////////
 
-        //TODO: Pressure/barometer
-        m_sensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        //TODO: Gyroscope or orientation? Orientation is probably a soft sensor
-        m_sensorGyro = m_sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-        
+    //Sync the wifi switch button to the current state of the device's wifi
+    public void switchWifiSetup(){
+        if(m_wifiManager.isWifiEnabled()){
+            m_wifiStatusText.setText("Wifi: ON");
+            m_wifiStatusSwitch.setChecked(true);
+        }
+        else
+        {
+            m_wifiStatusText.setText("Wifi: Off");
+            m_wifiStatusSwitch.setChecked(false);
+        }
     }
+
+    public void EnableWiFi(){ m_wifiManager.setWifiEnabled(true); }
+    public void DisableWiFi(){ m_wifiManager.setWifiEnabled(false);}
+
+    /////////////////////////////////////////////////////// VIEW STUFF ///////////////////////////////////////////////////////
 
     private void setupView() {
 
@@ -181,6 +180,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+    /////////////////////////////////////////////////////// SENSOR STUFF /////////////////////////////////////////////////////
+
     //Check if device has all sensors
     //Return if required sensor is unavailable, give notification and limit functions/features
     private void deviceHasSensors() {
@@ -214,21 +215,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-     //Sync the wifi switch button to the current state of the device's wifi
-    public void switchWifiSetup(){
-        if(m_wifiManager.isWifiEnabled()){
-            m_wifiStatusText.setText("Wifi: ON");
-            m_wifiStatusSwitch.setChecked(true);
+    private void setupSensors() {
+        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        //TODO: Pressure/barometer
+        if (m_sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null) {
+            m_sensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         }
         else
         {
-            m_wifiStatusText.setText("Wifi: Off");
-            m_wifiStatusSwitch.setChecked(false);
+            //TODO: Dialogue popup
         }
+        //TODO: Gyroscope or orientation? Orientation is probably a soft sensor
+        m_sensorGyro = m_sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+
     }
 
-    public void EnableWiFi(){ m_wifiManager.setWifiEnabled(true); }
-    public void DisableWiFi(){
-        m_wifiManager.setWifiEnabled(false);
-    }
 }

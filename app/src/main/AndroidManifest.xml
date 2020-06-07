@@ -13,22 +13,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".ManageDevicesActivity"
             android:label="Manage Devices"
+            android:parentActivityName=".MainActivity"
             />
         <activity
             android:name=".SelectDeviceActivity"
             android:label="Select a device"
+            android:parentActivityName=".AddDeviceActivity"
             />
         <activity
             android:name=".AddDeviceActivity"
             android:label="Add a Device"
+            android:parentActivityName=".MainActivity"
             />
         <activity
             android:name=".CalibrateDownUpActivity"
             android:label="Calibrate down up"
-            android:parentActivityName=".PerformableGesturesActivity"
+            android:parentActivityName=".CalibrateActivity"
             />
         <activity
             android:name=".RotateActivity"
