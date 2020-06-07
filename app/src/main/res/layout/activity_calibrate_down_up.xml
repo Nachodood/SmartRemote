@@ -29,18 +29,18 @@
         android:id="@+id/btn_cal_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tap to begin calibration" />
+        android:text="@string/btn_cal_start" />
 
     <Button
         android:id="@+id/btn_cal_end"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tap to finish calibration" />
+        android:text="@string/btn_cal_end" />
 
     <TextView
         android:id="@+id/txt_is_complete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/txt_is_complete" />
 
 </LinearLayout>

@@ -20,9 +20,17 @@ public class ConnectActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect);
+
+        setupView();
+
+    }
+
+    private void setupView() {
+
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
         // Enable the Up button
+        assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);
 
         m_wifiStatusText = findViewById(R.id.txt_wifi_status);
@@ -44,23 +52,15 @@ public class ConnectActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     public void switchWifiSetup(){
-        if(m_wifiManager.isWifiEnabled()){
-            m_wifiStatusText.setText("Wifi: ON");
-        }
+        if(m_wifiManager.isWifiEnabled()){ m_wifiStatusText.setText("Wifi: ON"); }
         else
-        {
-            m_wifiStatusText.setText("Wifi: Off");
-        }
+        { m_wifiStatusText.setText("Wifi: Off"); }
     }
 
-    public void EnableWiFi(){
-
-        m_wifiManager.setWifiEnabled(true);
-    }
+    public void EnableWiFi() { m_wifiManager.setWifiEnabled(true); }
     public void DisableWiFi(){
         m_wifiManager.setWifiEnabled(false);
     }

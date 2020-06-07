@@ -26,11 +26,6 @@ public class SelectDeviceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_device);
 
-        // Get a support ActionBar corresponding to this toolbar
-        ActionBar ab = getSupportActionBar();
-        // Enable the Up button
-        ab.setDisplayHomeAsUpEnabled(true);
-
         m_extras = getIntent().getExtras();
         if (m_extras == null) {
             Log.d(tag, "No extras");
@@ -41,7 +36,15 @@ public class SelectDeviceActivity extends AppCompatActivity {
 
     }
 
+    ////////////////////////////////////////////////////////////////////// VIEWS STUFF //////////////////////////////////////////////////////////////////////
     private void setupViews() {
+
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+        // Enable the Up button
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         m_name = m_extras.getString("DeviceName");
         m_txtName = findViewById(R.id.txt_name);
@@ -53,7 +56,7 @@ public class SelectDeviceActivity extends AppCompatActivity {
 
         m_compass = m_extras.getInt("CompassX");
         m_txtCompass = findViewById(R.id.txt_compass);
-        m_txtCompass.setText("Compass " + m_compass);
+        m_txtCompass.setText(String.format("%s%d", getString(R.string.txt_compass_value), m_compass));
 
         m_btnSelectDevice = findViewById(R.id.btn_select_device);
         m_btnSelectDevice.setOnClickListener(new View.OnClickListener() {

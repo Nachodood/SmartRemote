@@ -59,10 +59,10 @@
 
         <Button
             android:id="@+id/btn_manage_devices"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Manage devices" />
+            android:text="@string/btn_manage_devices" />
 
     </LinearLayout>
 

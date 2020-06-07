@@ -15,48 +15,31 @@ import android.widget.TextView;
 
 public class CalibrateDownUpActivity extends AppCompatActivity implements SensorEventListener {
 
-    private float m_ZFlickThreshold = 10;
     private Boolean isInCalMode = false;
 
-
     private TextView m_txtIsComplete;
-    private Button btnStart, btnStop;
-
-    private SensorManager m_sensorManager;
-    private Sensor mSensorAccel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calibrate_down_up);
 
-        // Get a support ActionBar corresponding to this toolbar
-        ActionBar ab = getSupportActionBar();
-        // Enable the Up button
-        ab.setDisplayHomeAsUpEnabled(true);
-
-        setupSensorStuff();
+        setupSensor();
         setupView();
 
     }
 
-    private void setupSensorStuff() {
-        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-
-        //linear acceleration = acceleration - acceleration due to gravity
-        mSensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-        m_sensorManager.registerListener(this, mSensorAccel, SensorManager.SENSOR_DELAY_NORMAL);
-
-        m_sensorManager.registerListener(this,
-                m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
-                m_sensorManager.SENSOR_DELAY_GAME);
-    }
-
     private void setupView() {
+
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+        // Enable the Up button
+        assert ab != null;
+        ab.setDisplayHomeAsUpEnabled(true);
 
         m_txtIsComplete = findViewById(R.id.txt_is_complete);
 
-        btnStart = findViewById(R.id.btn_cal_start);
+        Button btnStart = findViewById(R.id.btn_cal_start);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +47,7 @@ public class CalibrateDownUpActivity extends AppCompatActivity implements Sensor
             }
         });
 
-        btnStop = findViewById(R.id.btn_cal_end);
+        Button btnStop = findViewById(R.id.btn_cal_end);
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,20 +59,29 @@ public class CalibrateDownUpActivity extends AppCompatActivity implements Sensor
 
     }
 
+    private void setupSensor() {
+        SensorManager m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+        //linear acceleration = acceleration - acceleration due to gravity
+        assert m_sensorManager != null;
+        Sensor mSensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        m_sensorManager.registerListener(this, mSensorAccel, SensorManager.SENSOR_DELAY_NORMAL);
+
+        m_sensorManager.registerListener(this,
+                m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
+                SensorManager.SENSOR_DELAY_GAME);
+    }
+
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
 
         synchronized (this) {
-            switch (sensorEvent.sensor.getType()){
-
-                case Sensor.TYPE_LINEAR_ACCELERATION:
-
-                    float z = sensorEvent.values[2];
-                    if(z>m_ZFlickThreshold){
-                        m_txtIsComplete.setText("Flick complete");
-                    }
-                    break;
-
+            if (sensorEvent.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
+                float z = sensorEvent.values[2];
+                float m_ZFlickThreshold = 10;
+                if (z > m_ZFlickThreshold) {
+                    m_txtIsComplete.setText("Flick complete");
+                }
             }
         }
 

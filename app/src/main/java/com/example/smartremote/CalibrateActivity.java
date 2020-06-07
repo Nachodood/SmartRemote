@@ -10,13 +10,7 @@ import android.widget.Button;
 
 public class CalibrateActivity extends AppCompatActivity {
 
-    Button m_btnClockwise,
-            m_btnAntiClockwise,
-            m_btnFlickForward,
-            m_btnFlickBackward,
-            m_btnSHake,
-            m_btnUpDown,
-            m_btnDownUp,
+    Button m_btnDownUp,
             m_btnComplete;
 
     @Override
@@ -24,16 +18,17 @@ public class CalibrateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calibrate);
 
-        // Get a support ActionBar corresponding to this toolbar
-        ActionBar ab = getSupportActionBar();
-        // Enable the Up button
-        ab.setDisplayHomeAsUpEnabled(true);
-
-        setupButtons();
+        setupView();
 
     }
 
-    private void setupButtons() {
+    private void setupView() {
+
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+        // Enable the Up button
+        assert ab != null;
+        ab.setDisplayHomeAsUpEnabled(true);
 
         m_btnComplete = findViewById(R.id.btn_complete);
         m_btnComplete.setOnClickListener(new View.OnClickListener() {

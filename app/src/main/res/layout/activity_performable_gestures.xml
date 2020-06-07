@@ -12,17 +12,17 @@
         android:id="@+id/btn_accel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Accel-Flick" />
+        android:text="@string/btn_accel" />
 
     <Button
         android:id="@+id/btn_orient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Orientation-Left Right" />
+        android:text="@string/btn_orient" />
 
     <Button
         android:id="@+id/btn_swipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Swipe..." />
+        android:text="@string/btn_swipe" />
 </LinearLayout>

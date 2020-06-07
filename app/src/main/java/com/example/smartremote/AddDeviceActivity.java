@@ -24,46 +24,39 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
     private static final String TAG = "Compass";
 
     private SensorManager m_sensorManager;
-
-    private Sensor m_compassSensor, m_altitudeSensor;
-    
+    private Sensor m_altitudeSensor;
     private List<Sensor> m_sensorsList;
 
     EditText m_editText_name, m_editText_room;
-
-    float[] mValues;
-    int m_CompassXValue, m_altitudeValue;
-    String m_nameOfDevice, m_room;
-
     //TextView m_txtCompassValues;
     Button m_btnBtnSaveDeviceValues;
-
     TextView m_txtCompassValues;
+    
+    int m_CompassXValue, m_altitudeValue;
+    String m_nameOfDevice, m_room;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_device);
 
+        setupView();
+
+        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        setupSensors();
+
+    }
+
+    private void setupView() {
+
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
         // Enable the Up button
+        assert ab != null;
         ab.setDisplayHomeAsUpEnabled(true);
-        
+
         //The user doesn't need to see the compass values
         m_txtCompassValues = findViewById(R.id.m_txtCompassValues);
-
-        m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-
-        //TODO:Implement sensors list, either here or at main, maybe both
-        //Get from AvailableSensors.java
-        
-        m_compassSensor = m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-
-        //TODO:Finish this
-        m_altitudeSensor = m_sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
-        
-        m_sensorManager.registerListener(mListener, m_compassSensor, 100);
 
         m_btnBtnSaveDeviceValues = findViewById(R.id.btn_save_device);
         m_btnBtnSaveDeviceValues.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +70,18 @@ public class AddDeviceActivity extends AppCompatActivity implements SensorEventL
 
         m_editText_room = findViewById(R.id.editText_room);
 
+    }
+
+    private void setupSensors() {
+        //TODO:Implement sensors list, either here or at main, maybe both
+        //Get from AvailableSensors.java
+
+        Sensor m_compassSensor = m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+
+        /* TODO:Finish this */
+        m_altitudeSensor = m_sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+
+        m_sensorManager.registerListener(mListener, m_compassSensor, 100);
     }
 
     private void saveDeviceValues() {

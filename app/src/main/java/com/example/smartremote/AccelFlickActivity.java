@@ -10,11 +10,13 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
-    public class AccelFlickActivity extends AppCompatActivity implements SensorEventListener {
+import java.util.Objects;
 
-        private SensorManager msensorManager;
-        private Sensor mSensorAccel;
-        private long lastUpdate = 0;
+public class AccelFlickActivity extends AppCompatActivity implements SensorEventListener {
+
+        private SensorManager m_sensorManager;
+
+    private long lastUpdate = 0;
         float highestZ = 0;
         float lowestZ = 0;
 
@@ -27,21 +29,34 @@ import android.widget.TextView;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_accel_flick);
 
+            m_sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+
+            setupViews();
+            setupSensors();
+
+        }
+
+        private void setupSensors() {
+            //linear acceleration = acceleration - acceleration due to gravity
+            Sensor sensorAccel = m_sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+            Objects.requireNonNull(m_sensorManager).registerListener(this, sensorAccel, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+
+        //////////////////////////////////////////////////////////////// VIEWS ////////////////////////////////////////////////////////////////
+
+        private void setupViews() {
             // Get a support ActionBar corresponding to this toolbar
             ActionBar ab = getSupportActionBar();
             // Enable the Up button
+            assert ab != null;
             ab.setDisplayHomeAsUpEnabled(true);
 
             m_txtView_Accel = findViewById(R.id.txt_accel);
             m_txt_highestZ = findViewById(R.id.txt_highest_Z);
             m_txt_lowestZ = findViewById(R.id.txt_lowest_z);
-
-            msensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-            //linear acceleration = acceleration - acceleration due to gravity
-            mSensorAccel = msensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-            msensorManager.registerListener(this, mSensorAccel, SensorManager.SENSOR_DELAY_NORMAL);
-
         }
+
+    //////////////////////////////////////////////////////////////// SENSORS ////////////////////////////////////////////////////////////////
 
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {

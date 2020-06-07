@@ -29,20 +29,19 @@
             android:id="@+id/btn_edit_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit details" />
+            android:text="@string/edit_details" />
 
         <Button
             android:id="@+id/btn_cal_gestures"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/calibrate_gestures" />
+            android:text="@string/assign_gestures" />
 
         <Button
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete" />
+            android:text="@string/btn_delete" />
     </LinearLayout>
 
 </LinearLayout>
