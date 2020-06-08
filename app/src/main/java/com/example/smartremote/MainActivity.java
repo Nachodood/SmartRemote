@@ -272,7 +272,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String deviceInformation = String.valueOf(parent.getItemAtPosition(position));
-                Toast.makeText(MainActivity.this, deviceInformation, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, deviceInformation + "Click", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        m_listAvailableDevices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String deviceInformation = String.valueOf(parent.getItemAtPosition(position));
+                Toast.makeText(MainActivity.this, deviceInformation + "LongClick", Toast.LENGTH_LONG).show();
+
+                return true;
             }
         });
     }
