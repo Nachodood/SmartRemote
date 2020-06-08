@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -17,6 +18,8 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
@@ -264,5 +267,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         ListAdapter customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDevices); */
 
         m_listAvailableDevices.setAdapter(m_customDeviceAdapter);
+
+        m_listAvailableDevices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String deviceInformation = String.valueOf(parent.getItemAtPosition(position));
+                Toast.makeText(MainActivity.this, deviceInformation, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
