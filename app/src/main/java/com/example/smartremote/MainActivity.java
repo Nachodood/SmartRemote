@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         deviceHasSensors();
         setupView();
         setupScrlList();
+        setupListeners();
 
         m_wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
@@ -133,41 +134,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private void setupView() {
 
         m_btnManageDevicesActivity = findViewById(R.id.btn_manage_devices);
-        m_btnManageDevicesActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent manageDevicesActivityIntent = new Intent(MainActivity.this,
-                        ManageDevicesActivity.class);
-                startActivity(manageDevicesActivityIntent);
-            }
-        });
 
         m_fabAddDevice = findViewById(R.id.fab_add_device);
-        m_fabAddDevice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addDeviceIntent = new Intent(MainActivity.this,
-                        AddDeviceActivity.class);
-                startActivity(addDeviceIntent);
-            }
-        });
 
         m_wifiStatusText = findViewById(R.id.txt_connect_status);
         m_wifiStatusSwitch = findViewById(R.id.switch_wifi);
-
-        m_wifiStatusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // TODO Auto-generated method stub
-                if(isChecked) {
-                    m_wifiStatusText.setText("Wifi: On");
-                    EnableWiFi();
-                } else {
-                    m_wifiStatusText.setText("Wifi: Of");
-                    DisableWiFi();
-                }
-            }
-        });
 
         m_listAvailableDevices = findViewById(R.id.list_available_devices);
 
@@ -268,10 +239,54 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         m_listAvailableDevices.setAdapter(m_customDeviceAdapter);
 
+    }
+
+    //////////////////////////////////////////////  LISTENERS   //////////////////////////////////////////////
+
+    private void setupListeners() {
+
+        m_btnManageDevicesActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent manageDevicesActivityIntent = new Intent(MainActivity.this,
+                        ManageDevicesActivity.class);
+                startActivity(manageDevicesActivityIntent);
+            }
+        });
+
+        m_fabAddDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addDeviceIntent = new Intent(MainActivity.this,
+                        AddDeviceActivity.class);
+                startActivity(addDeviceIntent);
+            }
+        });
+
+        m_wifiStatusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // TODO Auto-generated method stub
+                if(isChecked) {
+                    m_wifiStatusText.setText("Wifi: On");
+                    EnableWiFi();
+                } else {
+                    m_wifiStatusText.setText("Wifi: Of");
+                    DisableWiFi();
+                }
+            }
+        });
+
         m_listAvailableDevices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String deviceInformation = String.valueOf(parent.getItemAtPosition(position));
+
+                Intent manageDeviceIntent = new Intent(MainActivity.this,
+                        ManageDevicesActivity.class);
+                manageDeviceIntent.putExtra("DeviceInformation", deviceInformation);
+                startActivity(manageDeviceIntent);
+
                 Toast.makeText(MainActivity.this, deviceInformation + "Click", Toast.LENGTH_LONG).show();
             }
         });
@@ -286,5 +301,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 return true;
             }
         });
+
     }
 }
