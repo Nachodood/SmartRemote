@@ -8,8 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ManageDevicesActivity extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class ManageDevicesActivity extends AppCompatActivity {
 
     Button m_btnCalibrate, m_btnEditDetails;
     TextView m_txtDeviceInformation;
+    ListView listViewDevices;
 
     String m_deviceInformation;
 
@@ -34,12 +36,14 @@ public class ManageDevicesActivity extends AppCompatActivity {
         m_extras = getIntent().getExtras();
         if (m_extras == null) {
             Log.d(TAG, "No extras");
-            setupAlllDevicesList();
+            //This method will manage the view and listeners as it will only be called under
+            // certain conditions eg. depending on where this activity will be called from
+            //TODO: This doesn't necessarily have to be here: there are multiple ways of
+            setupAllDevicesList();
             return;
         }
 
         setupView();
-
         setupListeners();
 
     }
@@ -71,7 +75,7 @@ public class ManageDevicesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent calibrateActivityIntent = new Intent(ManageDevicesActivity.this,
-                        CalibrateActivity.class);
+                        AssignGesturesActivity.class);
                 startActivity(calibrateActivityIntent);
             }
         });
@@ -85,8 +89,9 @@ public class ManageDevicesActivity extends AppCompatActivity {
             }
         });
     }
+    private void setupAllDevicesList(){
 
-    private void setupAlllDevicesList(){
+
 
     }
 }

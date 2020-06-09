@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class CalibrateActivity extends AppCompatActivity {
+public class AssignGesturesActivity extends AppCompatActivity {
 
     Button m_btnDownUp,
             m_btnComplete;
@@ -16,7 +16,7 @@ public class CalibrateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calibrate);
+        setContentView(R.layout.activity_assign_gestures);
 
         setupView();
 
@@ -34,7 +34,7 @@ public class CalibrateActivity extends AppCompatActivity {
         m_btnComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent completeIntent = new Intent(CalibrateActivity.this,
+                Intent completeIntent = new Intent(AssignGesturesActivity.this,
                         MainActivity.class);
                 startActivity(completeIntent);
             }
@@ -44,7 +44,7 @@ public class CalibrateActivity extends AppCompatActivity {
         m_btnDownUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent calibDownUpIntent = new Intent(CalibrateActivity.this,
+                Intent calibDownUpIntent = new Intent(AssignGesturesActivity.this,
                         CalibrateDownUpActivity.class);
                 startActivity(calibDownUpIntent);
             }

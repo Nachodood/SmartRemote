@@ -46,6 +46,11 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_view_gestures" /> -->
 
+    <ListView
+        android:id="@+id/list_available_devices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,11 +70,6 @@
             android:text="@string/btn_manage_devices" />
 
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/list_available_devices"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <!--<Button
        android:id="@+id/btn_sensor_test"

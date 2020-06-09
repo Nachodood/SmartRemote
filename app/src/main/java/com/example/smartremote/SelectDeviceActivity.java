@@ -63,7 +63,7 @@ public class SelectDeviceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent selectDeviceIntent = new Intent(SelectDeviceActivity.this,
-                        CalibrateActivity.class);
+                        AssignGesturesActivity.class);
                 startActivity(selectDeviceIntent);
             }
         });
