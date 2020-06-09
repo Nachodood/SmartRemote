@@ -239,6 +239,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         m_listAvailableDevices.setAdapter(m_customDeviceAdapter);
 
+
+
     }
 
     //////////////////////////////////////////////  LISTENERS   //////////////////////////////////////////////
