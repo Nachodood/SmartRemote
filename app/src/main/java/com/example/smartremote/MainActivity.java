@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Switch m_wifiStatusSwitch;
     Button  m_btnManageDevicesActivity;
     FloatingActionButton m_fabAddDevice;
-    ListView m_listAvailableDevices;
+    ListView m_listAvailableDevices, m_listUnavailableDevices;
 
     WifiManager m_wifiManager;
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     List<Sensor> m_deviceSensorsList;
     ArrayList<Sensor> m_requiredSensorsList;
 
-    ListAdapter m_customDeviceAdapter;
+    ListAdapter m_customDeviceAdapter, m_customUnavailableAdapter;
 
     //TODO: I need to add onResume(), onResume() etc. See SensorTest.java
 
@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setupSensors();
         deviceHasSensors();
         setupView();
-        setupScrlList();
+        setupAvailablelList();
+        setupUnavailableDevicesList();
         setupListeners();
 
         m_wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -133,6 +134,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void setupView() {
 
+        /* TODO: Remove button */
         m_btnManageDevicesActivity = findViewById(R.id.btn_manage_devices);
 
         m_fabAddDevice = findViewById(R.id.fab_add_device);
@@ -140,7 +142,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         m_wifiStatusText = findViewById(R.id.txt_connect_status);
         m_wifiStatusSwitch = findViewById(R.id.switch_wifi);
 
+        /* TODO: Appropriate styling here for offline and online devices */
         m_listAvailableDevices = findViewById(R.id.list_available_devices);
+        m_listUnavailableDevices = findViewById(R.id.list_unavailable_devices);
 
     }
 
@@ -195,9 +199,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    /////////////////////////////////////////////////////// LISTVIEW /////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////// LISTVIEWS /////////////////////////////////////////////////////
     //ListView has been setup in setupView()
-    private void setupScrlList() {
+    private void setupAvailablelList() {
         //Of course, the list would be populated from persistant storage.
         //Possibly use a list of Device Objects?
         //ArrayList<Device> exampleDevices = new ArrayList<Device>();
@@ -205,14 +209,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         ArrayList<String> arrayListExampleDeviceNames = new ArrayList<>();
         arrayListExampleDeviceNames.add("Echo");
         arrayListExampleDeviceNames.add( "Alexa");
-        arrayListExampleDeviceNames.add("Bulb");
-        arrayListExampleDeviceNames.add( "SmartTV");
 
         ArrayList<String> arrayListExampleRooms = new ArrayList<>();
         arrayListExampleRooms.add("Bedroom");
         arrayListExampleRooms.add( "Living room");
-        arrayListExampleRooms.add("Kitchen");
-        arrayListExampleRooms.add( "Bathroom");
 
 //        ListAdapter customDeviceAdapter = new DeviceScrollListAdapter(this, arrayListExampleDeviceNames, arrayListExampleRooms);
 
@@ -239,7 +239,47 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         m_listAvailableDevices.setAdapter(m_customDeviceAdapter);
 
+    }
 
+    private void setupUnavailableDevicesList(){
+        //m_listUnavailableDevices
+
+        //Of course, the list would be populated from persistant storage.
+        //Possibly use a list of Device Objects?
+        //ArrayList<Device> exampleDevices = new ArrayList<Device>();
+
+        ArrayList<String> arrayListExampleDeviceNames = new ArrayList<>();
+        arrayListExampleDeviceNames.add("Bulb");
+        arrayListExampleDeviceNames.add( "SmartTV");
+
+        ArrayList<String> arrayListExampleRooms = new ArrayList<>();
+        arrayListExampleRooms.add("Kitchen");
+        arrayListExampleRooms.add( "Bathroom");
+
+//        ListAdapter customDeviceAdapter = new DeviceScrollListAdapter(this, arrayListExampleDeviceNames, arrayListExampleRooms);
+
+        ArrayList<String> exampleDeviceInfo = new ArrayList<>();
+        int i = 0;
+        while(i<arrayListExampleDeviceNames.size()){
+            exampleDeviceInfo.add(arrayListExampleDeviceNames.get(i) + " " + arrayListExampleRooms.get(i) );
+            i++;
+        }
+
+        m_customUnavailableAdapter = new DeviceScrollListAdapter(this, exampleDeviceInfo);
+
+       /* Device alexa = new Device("alexa", "Kitchen", 67, 1000);
+        Device smartTV = new Device("smartTV", "LivingRoom", 22, 1000);
+        Device Bulb = new Device("Bulb", "Bedroom", 127, 1005);
+        Device bulb2 = new Device("Bulb2", "MasterBedroom", 359, 999);
+        exampleDevices.add(alexa);
+        exampleDevices.add(smartTV);
+        exampleDevices.add(Bulb);
+        exampleDevices.add(bulb2);
+        exampleDevices.toArray();
+        exampleDevices.toString();
+        ListAdapter customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDevices); */
+
+        m_listUnavailableDevices.setAdapter(m_customUnavailableAdapter);
 
     }
 
@@ -247,6 +287,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void setupListeners() {
 
+        /* TODO: Remove btnManageDevices button and listener
+                 Assign edit details listeners to both lists to replace manage devices purpose
+         */
         m_btnManageDevicesActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
