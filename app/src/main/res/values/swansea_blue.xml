@@ -4,12 +4,31 @@
     <style name="SwanseaBlueButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#5666fc</item>
-        <item name="android:background">#101a6e</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">#1928a8</item>
     </style>
 
     <style name="SwanseaBlueButton.BigSwanseaBlueButton">
-        <item name="android:textSize">30dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">#101a6e</item>
+        <item name="android:textSize">25dp</item>
+    </style>
+
+    <style name="SwanseaBlueTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">#1928a8</item>
+    </style>
+
+    <style name="SwanseaBlueTextView.bigSwanseaBlueTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">#ffffff</item>
+        <item name="android:textSize">25dp</item>
     </style>
 
 </resources>
