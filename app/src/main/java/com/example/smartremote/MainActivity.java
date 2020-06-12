@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             i++;
         }
 
-        m_customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDeviceInfo);
+        m_customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDeviceInfo, true);
 
        /* Device alexa = new Device("alexa", "Kitchen", 67, 1000);
         Device smartTV = new Device("smartTV", "LivingRoom", 22, 1000);
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             i++;
         }
 
-        m_customUnavailableAdapter = new DeviceScrollListAdapter(this, exampleDeviceInfo);
+        m_customUnavailableAdapter = new DeviceScrollListAdapter(this, exampleDeviceInfo, false);
 
        /* Device alexa = new Device("alexa", "Kitchen", 67, 1000);
         Device smartTV = new Device("smartTV", "LivingRoom", 22, 1000);
@@ -280,6 +280,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         ListAdapter customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDevices); */
 
         m_listUnavailableDevices.setAdapter(m_customUnavailableAdapter);
+
+        //m_listUnavailableDevices.setItem
 
     }
 

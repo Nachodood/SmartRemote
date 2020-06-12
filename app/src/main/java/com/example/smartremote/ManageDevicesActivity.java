@@ -131,7 +131,7 @@ eg. depending on where this activity will be called from
             i++;
         }
 
-        m_customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDeviceInfo);
+        m_customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDeviceInfo, true);
 
        /* Device alexa = new Device("alexa", "Kitchen", 67, 1000);
         Device smartTV = new Device("smartTV", "LivingRoom", 22, 1000);

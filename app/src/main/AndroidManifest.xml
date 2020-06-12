@@ -2,9 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smartremote">
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:required="true" />
+    <uses-permission
+        android:name="android.permission.ACCESS_WIFI_STATE"
+        android:required="true" />
+    <uses-permission
+        android:name="android.permission.CHANGE_WIFI_STATE"
+        android:required="true" />
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -17,57 +26,46 @@
         <activity
             android:name=".ManageDevicesActivity"
             android:label="Manage Devices"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SelectDeviceActivity"
             android:label="Select a device"
-            android:parentActivityName=".AddDeviceActivity"
-            />
+            android:parentActivityName=".AddDeviceActivity" />
         <activity
             android:name=".AddDeviceActivity"
             android:label="Add a Device"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CalibrateDownUpActivity"
             android:label="Calibrate down up"
-            android:parentActivityName=".AssignGesturesActivity"
-            />
+            android:parentActivityName=".AssignGesturesActivity" />
         <activity
             android:name=".RotateActivity"
             android:label="Rotate Left or Right"
-            android:parentActivityName=".PerformableGesturesActivity"
-            />
+            android:parentActivityName=".PerformableGesturesActivity" />
         <activity
             android:name=".AssignGesturesActivity"
             android:label="Assign gestures"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AccelFlickActivity"
             android:label="AccelFlickActivity"
-            android:parentActivityName=".PerformableGesturesActivity"
-            />
+            android:parentActivityName=".PerformableGesturesActivity" />
         <activity
             android:name=".AvailableSensors"
             android:label="Available sensors"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SensorTest"
-            android:label="Sensor test"
-            />
+            android:label="Sensor test" />
         <activity
             android:name=".PerformableGesturesActivity"
             android:label="Performable gestures"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ConnectActivity"
             android:label="Connect to a device"
-            android:parentActivityName=".MainActivity"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
