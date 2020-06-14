@@ -28,50 +28,9 @@ import java.util.List;
 //https://developer.android.com/reference/android/net/wifi/WifiManager
 //https://developer.android.com/training/connect-devices-wirelessly/wifi-direct Create P2P connections with Wi-Fi Direct
 
-//https://developers.google.com/nearby/connections/overview:///////////////////////////////////
-    /*Some example use cases:
-Collaborative whiteboard: Jot ideas down with nearby participants on a shared virtual whiteboard.
-Local multiplayer gaming: Set up a multiplayer game and invite other users nearby to join.
-Multi-screen gaming: Use a phone or tablet as a game controller to play games displayed on a nearby large-screen Android device, such as Android TV.
-Offline file transfers: Share photos, videos, or any other type of data quickly and without requiring a network connection.
-     */
+//https://developers.google.com/nearby/connections/overview
 //https://developer.android.com/training/connect-devices-wirelessly
 //https://developer.android.com/guide/topics/connectivity/wifi-scan Wi-Fi scanning overview
-        /*m_btnSensorTest = findViewById(R.id.btn_sensor_test);
-        m_btnSensorTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sensorTestIntent = new Intent(MainActivity.this,
-                        SensorTest.class);
-                startActivity(sensorTestIntent);
-            }
-        });
-        */
-
-        /*
-        m_btnViewGestures = findViewById(R.id.btn_view_gestures);
-        m_btnViewGestures.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent viewGesturesIntent = new Intent(MainActivity.this,
-                        PerformableGesturesActivity.class);
-                startActivity(viewGesturesIntent);
-            }
-        });
-
-
-
-        m_btnAvailableSensors = findViewById(R.id.imgbtn_list_sensors);
-        m_btnAvailableSensors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent availableSensorsIntent = new Intent(MainActivity.this,
-                        AvailableSensors.class);
-                startActivity(availableSensorsIntent);
-
-            }
-        });
-        */
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -101,8 +60,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setupSensors();
         deviceHasSensors();
         setupView();
-        setupAvailablelList();
-        setupUnavailableDevicesList();
         setupListeners();
 
         m_wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -141,10 +98,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         m_wifiStatusText = findViewById(R.id.txt_connect_status);
         m_wifiStatusSwitch = findViewById(R.id.switch_wifi);
-
-        /* TODO: Appropriate styling here for offline and online devices */
-        m_listAvailableDevices = findViewById(R.id.list_available_devices);
-        m_listUnavailableDevices = findViewById(R.id.list_unavailable_devices);
 
     }
 
@@ -200,90 +153,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     /////////////////////////////////////////////////////// LISTVIEWS /////////////////////////////////////////////////////
-    //ListView has been setup in setupView()
-    private void setupAvailablelList() {
-        //Of course, the list would be populated from persistant storage.
-        //Possibly use a list of Device Objects?
-        //ArrayList<Device> exampleDevices = new ArrayList<Device>();
-
-        ArrayList<String> arrayListExampleDeviceNames = new ArrayList<>();
-        arrayListExampleDeviceNames.add("Echo");
-        arrayListExampleDeviceNames.add( "Alexa");
-
-        ArrayList<String> arrayListExampleRooms = new ArrayList<>();
-        arrayListExampleRooms.add("Bedroom");
-        arrayListExampleRooms.add( "Living room");
-
-//        ListAdapter customDeviceAdapter = new DeviceScrollListAdapter(this, arrayListExampleDeviceNames, arrayListExampleRooms);
-
-        ArrayList<String> exampleDeviceInfo = new ArrayList<>();
-        int i = 0;
-        while(i<arrayListExampleDeviceNames.size()){
-            exampleDeviceInfo.add(arrayListExampleDeviceNames.get(i) + " " + arrayListExampleRooms.get(i) );
-            i++;
-        }
-
-        m_customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDeviceInfo, true);
-
-       /* Device alexa = new Device("alexa", "Kitchen", 67, 1000);
-        Device smartTV = new Device("smartTV", "LivingRoom", 22, 1000);
-        Device Bulb = new Device("Bulb", "Bedroom", 127, 1005);
-        Device bulb2 = new Device("Bulb2", "MasterBedroom", 359, 999);
-        exampleDevices.add(alexa);
-        exampleDevices.add(smartTV);
-        exampleDevices.add(Bulb);
-        exampleDevices.add(bulb2);
-        exampleDevices.toArray();
-        exampleDevices.toString();
-        ListAdapter customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDevices); */
-
-        m_listAvailableDevices.setAdapter(m_customDeviceAdapter);
-
-    }
-
-    private void setupUnavailableDevicesList(){
-        //m_listUnavailableDevices
-
-        //Of course, the list would be populated from persistant storage.
-        //Possibly use a list of Device Objects?
-        //ArrayList<Device> exampleDevices = new ArrayList<Device>();
-
-        ArrayList<String> arrayListExampleDeviceNames = new ArrayList<>();
-        arrayListExampleDeviceNames.add("Bulb");
-        arrayListExampleDeviceNames.add( "SmartTV");
-
-        ArrayList<String> arrayListExampleRooms = new ArrayList<>();
-        arrayListExampleRooms.add("Kitchen");
-        arrayListExampleRooms.add( "Bathroom");
-
-//        ListAdapter customDeviceAdapter = new DeviceScrollListAdapter(this, arrayListExampleDeviceNames, arrayListExampleRooms);
-
-        ArrayList<String> exampleDeviceInfo = new ArrayList<>();
-        int i = 0;
-        while(i<arrayListExampleDeviceNames.size()){
-            exampleDeviceInfo.add(arrayListExampleDeviceNames.get(i) + " " + arrayListExampleRooms.get(i) );
-            i++;
-        }
-
-        m_customUnavailableAdapter = new DeviceScrollListAdapter(this, exampleDeviceInfo, false);
-
-       /* Device alexa = new Device("alexa", "Kitchen", 67, 1000);
-        Device smartTV = new Device("smartTV", "LivingRoom", 22, 1000);
-        Device Bulb = new Device("Bulb", "Bedroom", 127, 1005);
-        Device bulb2 = new Device("Bulb2", "MasterBedroom", 359, 999);
-        exampleDevices.add(alexa);
-        exampleDevices.add(smartTV);
-        exampleDevices.add(Bulb);
-        exampleDevices.add(bulb2);
-        exampleDevices.toArray();
-        exampleDevices.toString();
-        ListAdapter customDeviceAdapter = new DeviceScrollListAdapter(this, exampleDevices); */
-
-        m_listUnavailableDevices.setAdapter(m_customUnavailableAdapter);
-
-        //m_listUnavailableDevices.setItem
-
-    }
 
     //////////////////////////////////////////////  LISTENERS   //////////////////////////////////////////////
 
@@ -321,31 +190,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     m_wifiStatusText.setText("Wifi: Of");
                     DisableWiFi();
                 }
-            }
-        });
-
-        m_listAvailableDevices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String deviceInformation = String.valueOf(parent.getItemAtPosition(position));
-
-                Intent manageDeviceIntent = new Intent(MainActivity.this,
-                        ManageDevicesActivity.class);
-                manageDeviceIntent.putExtra("DeviceInformation", deviceInformation);
-                startActivity(manageDeviceIntent);
-
-                Toast.makeText(MainActivity.this, deviceInformation + "Click", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        m_listAvailableDevices.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                String deviceInformation = String.valueOf(parent.getItemAtPosition(position));
-                Toast.makeText(MainActivity.this, deviceInformation + "LongClick", Toast.LENGTH_LONG).show();
-
-                return true;
             }
         });
 

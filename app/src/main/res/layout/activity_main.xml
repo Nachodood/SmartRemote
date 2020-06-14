@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_view_gestures" /> -->
 
+    <!-- REPLACED BY FRAGMENTS
     <ListView
         android:id="@+id/list_available_devices"
         android:layout_width="wrap_content"
@@ -64,6 +65,8 @@
         android:id="@+id/list_unavailable_devices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+        -->
 
     <LinearLayout
         android:layout_width="match_parent"
