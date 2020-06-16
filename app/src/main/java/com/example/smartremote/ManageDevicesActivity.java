@@ -77,23 +77,6 @@ public class ManageDevicesActivity extends AppCompatActivity {
 
     private void setupListeners() {
 
-        m_btnCalibrate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent calibrateActivityIntent = new Intent(ManageDevicesActivity.this,
-                        AssignGesturesActivity.class);
-                startActivity(calibrateActivityIntent);
-            }
-        });
-
-        m_btnEditDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent editDetailsActivityIntent = new Intent(ManageDevicesActivity.this,
-                        AddDeviceActivity.class);
-                startActivity(editDetailsActivityIntent);
-            }
-        });
     }
 
 ////////////////////////////////////  LISTVIEW SETUP AND POPULATE /////////////////////////////
