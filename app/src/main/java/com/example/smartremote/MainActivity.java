@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private String m_SensorsNotProvideByDevice;
 
+    private boolean m_isgestureListen = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +117,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         m_sensorManager.registerListener(this,
                 m_sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
                 m_sensorManager.SENSOR_DELAY_GAME);
+
+        m_imgGesturePerformed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(m_isgestureListen == false){
+                    m_isgestureListen = true;
+                    m_imgGesturePerformed.setImageResource(R.drawable.shitty_go);
+                }
+                else
+                {
+                    m_isgestureListen = false;
+                }
+            }
+        });
     }
 
     /////////////////////////////////////////////////////// DEVICE CHECKS //////////////////////////////////////////////////
@@ -130,35 +146,38 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        synchronized (this) {
-            switch (sensorEvent.sensor.getType()){
 
-                case Sensor.TYPE_LINEAR_ACCELERATION:
+        if (m_isgestureListen == true) {
+            synchronized (this) {
+                switch (sensorEvent.sensor.getType()) {
 
-                    float x = sensorEvent.values[0];
-                    if(x>15){ m_imgGesturePerformed.setImageResource(R.drawable.shitty_arrow_left); }
+                    case Sensor.TYPE_LINEAR_ACCELERATION:
 
-                    else if(x<-15){ m_imgGesturePerformed.setImageResource(R.drawable.shitty_arrow_right); }
+                        float x = sensorEvent.values[0];
+                        if (x > 15) {
+                            m_imgGesturePerformed.setImageResource(R.drawable.shitty_arrow_right);
+                        } else if (x < -15) {
+                            m_imgGesturePerformed.setImageResource(R.drawable.shitty_arrow_left);
+                        }
 
-                    float z = sensorEvent.values[2];
-                    if(z>15){
-                        m_imgGesturePerformed.setImageResource(R.drawable.shitty_arrow_up);
-                    }
-                    break;
+                        float z = sensorEvent.values[2];
+                        if (z > 15) {
+                            m_imgGesturePerformed.setImageResource(R.drawable.shitty_arrow_up);
+                        }
+                        break;
 
-                case Sensor.TYPE_ORIENTATION:
-                    m_orientx = sensorEvent.values[0];
-                    m_orienty = sensorEvent.values[1];
-                    m_orientz = sensorEvent.values[2];
+                    case Sensor.TYPE_ORIENTATION:
+                        m_orientx = sensorEvent.values[0];
+                        m_orienty = sensorEvent.values[1];
+                        m_orientz = sensorEvent.values[2];
 
-                    if ( m_orientx > 60 && 70 > m_orientx){
-                        m_imgGesturePerformed.setImageResource(R.drawable.clockwise_rotate_arrow);
-                    }
-                    else if (m_orientx > 280 && 290 > m_orientx)
-                    {
-                        m_imgGesturePerformed.setImageResource(R.drawable.anticlockwise_arrow_rotate);
-                    }
+                        if (m_orientx > 90 && 95 > m_orientx) {
+                            m_imgGesturePerformed.setImageResource(R.drawable.clockwise_rotate_arrow);
+                        } else if (m_orientx > 270 && 275 > m_orientx) {
+                            m_imgGesturePerformed.setImageResource(R.drawable.anticlockwise_arrow_rotate);
+                        }
 
+                }
             }
         }
 
@@ -168,4 +187,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//       m_sensorManager.registerListener(this, m_sensorAccel, SensorManager.SENSOR_DELAY_NORMAL);
+//        m_sensorManager.registerListener(this, m_sensorGyro, SensorManager.SENSOR_DELAY_NORMAL);
+//
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//       //m_sensorManager.unregisterListener(this);
+//    }
+
 }

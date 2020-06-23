@@ -15,6 +15,9 @@
         android:name="android.permission.INTERNET"
         android:required="true" />
 
+    <uses-feature android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,49 +26,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".ManageDevicesActivity"
-            android:label="Manage Devices"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".SelectDeviceActivity"
-            android:label="Select a device"
-            android:parentActivityName=".AddDeviceActivity" />
-        <activity
-            android:name=".AddDeviceActivity"
-            android:label="Add a Device"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".CalibrateDownUpActivity"
-            android:label="Calibrate down up"
-            android:parentActivityName=".AssignGesturesActivity" />
-        <activity
-            android:name=".RotateActivity"
-            android:label="Rotate Left or Right"
-            android:parentActivityName=".PerformableGesturesActivity" />
-        <activity
-            android:name=".AssignGesturesActivity"
-            android:label="Assign gestures"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".AccelFlickActivity"
-            android:label="AccelFlickActivity"
-            android:parentActivityName=".PerformableGesturesActivity" />
-        <activity
-            android:name=".AvailableSensors"
-            android:label="Available sensors"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".SensorTest"
-            android:label="Sensor test" />
-        <activity
-            android:name=".PerformableGesturesActivity"
-            android:label="Performable gestures"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".ConnectActivity"
-            android:label="Connect to a device"
-            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
