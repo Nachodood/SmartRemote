@@ -13,7 +13,7 @@
         style="@style/SwanseaBlueTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Connected"
+        android:text="@string/txt_connected_status"
         android:textSize="15sp" />
 
     <LinearLayout
@@ -57,6 +57,12 @@
             app:srcCompat="@android:drawable/ic_menu_manage" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tap_to_begin_then_press_and_hold_while_you_make_your_gesture_flick_up_left_and_right_rotate_clockwise_and_anticlockwise" />
 
     <ImageView
         android:id="@+id/img_gesture_performed"
